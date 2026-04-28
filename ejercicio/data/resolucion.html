@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Instituciones</title>
+</head>
+<body>
+
+<h1>Lista de Instituciones</h1>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>AMIE</th>
+            <th>Nombre</th>
+            <th>Provincia</th>
+            <th>Cantón</th>
+        </tr>
+    </thead>
+    <tbody id="tabla"></tbody>
+</table>
+
+<script>
+let archivo = new XMLHttpRequest();
+
+/* Leer archivo dentro de la carpeta json */
+archivo.open("GET", "json/data_instituciones.json", true);
+
+archivo.onreadystatechange = function () {
+
+    if (archivo.readyState == 4 && archivo.status == 200) {
+
+        let datos = JSON.parse(archivo.responseText);
+        let filas = "";
+
+        datos.forEach(i => {
+
+            filas += `
+            <tr>
+                <td>${i.AMIE}</td>
+                <td>${i["Nombre-Educativa"]}</td>
+                <td>${i.Provincia}</td>
+                <td>${i.Canton}</td>
+            </tr>
+            `;
+
+        });
+
+        document.getElementById("tabla").innerHTML = filas;
+    }
+
+};
+
+archivo.send();
+</script>
+
+</body>
+</html>
