@@ -23,8 +23,8 @@
 <script>
 let archivo = new XMLHttpRequest();
 
-/* Leer archivo dentro de la carpeta json */
-archivo.open("GET", "json/data_instituciones.json", true);
+/* Leer JSON desde internet */
+archivo.open("GET", "https://raw.githubusercontent.com/taw-desarrollo-plataformas-web/oers/refs/heads/main/data_instituciones.json", true);
 
 archivo.onreadystatechange = function () {
 
